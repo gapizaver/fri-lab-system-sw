@@ -30,7 +30,7 @@ int main(int argc, char * argv [])
             perror("Napaka pri branju: ");
         }
 
-        if (!close(fd) < 0) {
+        if (close(fd) < 0) {
             perror("Napaka pri zapiranju: ");
         }
 
