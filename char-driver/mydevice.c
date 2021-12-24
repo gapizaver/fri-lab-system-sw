@@ -2,10 +2,13 @@
 #include <linux/module.h>
 #include <linux/fs.h>
 #include <linux/uaccess.h>
+#include <linux/errno.h>
+#include <linux/slab.h>
 //#include <stdio.h>
 
 #define DEVICE_NAME "mydevice"
-#define BUF_SIZE 64
+// 10 za testiranje
+#define BUF_SIZE 128
 
 MODULE_LICENSE("GPL");
 
@@ -71,7 +74,7 @@ ssize_t beri(struct file *filp, char __user *buff, size_t len, loff_t *offset)
 		// izračunaj koliko bytov vrniti
 		len = size - *offset;
 
-	if ( copy_to_user( buff, msg, len + *offset) )
+	if ( copy_to_user( buff, msg + *offset, len) )
 		return -EFAULT;
 
 	*offset += len;
