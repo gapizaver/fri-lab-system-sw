@@ -4,3 +4,10 @@
 stevila
 izhod1
 izhod2
+*.symvers
+*.order
+*.ko
+*.mod
+*.mod.*
+*.o
+*.cmd
